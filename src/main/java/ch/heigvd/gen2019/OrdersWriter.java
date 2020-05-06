@@ -10,6 +10,12 @@ public class OrdersWriter {
     public String getContents() {
         StringBuffer sb = new StringBuffer("{\"orders\": [");
 
+        getOrderJson(sb);
+
+        return sb.append("]}").toString();
+    }
+
+    private void getOrderJson(StringBuffer sb) {
         for (int i = 0; i < orders.getOrdersCount(); i++) {
             Order order = orders.getOrder(i);
             sb.append("{");
@@ -27,8 +33,6 @@ public class OrdersWriter {
         }
 
         removeLastTwoCharacters(sb, orders.getOrdersCount());
-
-        return sb.append("]}").toString();
     }
 
     private void removeLastTwoCharacters(StringBuffer sb, int productsCount) {

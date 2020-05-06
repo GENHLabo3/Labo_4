@@ -20,19 +20,21 @@ public class OrdersWriter {
 
             getProductsJsonInformation(sb, order);
 
-            if (order.getProductsCount() > 0) {
-                sb.delete(sb.length() - 2, sb.length());
-            }
+            removeLastTwoCharacters(sb, order.getProductsCount());
 
             sb.append("]");
             sb.append("}, ");
         }
 
-        if (orders.getOrdersCount() > 0) {
-            sb.delete(sb.length() - 2, sb.length());
-        }
+        removeLastTwoCharacters(sb, orders.getOrdersCount());
 
         return sb.append("]}").toString();
+    }
+
+    private void removeLastTwoCharacters(StringBuffer sb, int productsCount) {
+        if (productsCount > 0) {
+            sb.delete(sb.length() - 2, sb.length());
+        }
     }
 
     private void getProductsJsonInformation(StringBuffer sb, Order order) {

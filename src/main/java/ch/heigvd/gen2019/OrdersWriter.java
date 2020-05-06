@@ -40,7 +40,7 @@ public class OrdersWriter {
             sb.append(getJsonAttribute("color", getColorFor(product)));
             sb.append(", ");
 
-            if (product.getSize() != Product.SIZE_NOT_APPLICABLE) {
+            if (product.getSize() != Size.undefined) {
                 sb.append(getJsonAttribute("size", getSizeFor(product)));
                 sb.append(", ");
             }
@@ -53,17 +53,17 @@ public class OrdersWriter {
     }
 
     private String getSizeFor(Product product) {
-        if(product.getSize() < 0 || product.getSize() > Size.values().length)
+        if(product.getSize() == null)
             return "Invalid Size";
 
-        return Size.values()[product.getSize() - 1].toString();
+        return product.getSize().toString();
     }
 
     private String getColorFor(Product product) {
-        if(product.getColor() < 0 || product.getColor() > Color.values().length)
+        if(product.getColor() == null)
             return "no color";
 
-        return Color.values()[product.getColor() - 1].toString();
+        return product.getColor().toString();
     }
 
     private String getJsonAttribute(String attribute, String productValue) {

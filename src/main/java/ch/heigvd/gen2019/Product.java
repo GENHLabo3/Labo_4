@@ -1,6 +1,7 @@
 package ch.heigvd.gen2019;
 
 public class Product {
+
     public static final int SIZE_NOT_APPLICABLE = -1;
     private String code;
     private int color;
@@ -14,6 +15,7 @@ public class Product {
         this.size = size;
         this.price = price;
         this.currency = currency;
+
     }
 
     public String getCode() {

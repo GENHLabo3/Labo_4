@@ -45,7 +45,11 @@ public class OrdersWriter {
 
             if (product.getSize() != Product.SIZE_NOT_APPLICABLE) {
                 sb.append("\"size\": \"");
-                sb.append(Size.values()[product.getSize() - 1].toString());
+                if(product.getSize() < 0 || product.getSize() > Size.values().length) {
+                    sb.append("Invalid Size");
+                } else {
+                    sb.append(Size.values()[product.getSize() - 1].toString());
+                }
                 sb.append("\", ");
             }
 

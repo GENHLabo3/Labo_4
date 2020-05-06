@@ -17,14 +17,13 @@ public class OrdersWriter {
         for (int i = 0; i < orders.getOrdersCount(); i++) {
             Order order = orders.getOrder(i);
             sb.append("{");
-            sb.append("\"id\": ");
-            sb.append(order.getOrderId());
+            sb.append(getJsonAttribute("id", order.getOrderId()));
             sb.append(", ");
+
             sb.append("\"products\": [");
-
             getProductsJsonInformation(sb, order);
-
             sb.append("]");
+
             sb.append("}" + (i >= orders.getOrdersCount() - 1 ? "" : ", "));
         }
 
@@ -72,6 +71,10 @@ public class OrdersWriter {
     }
 
     private String getJsonAttribute(String attribute, double productValue) {
+        return "\"" + attribute + "\": " + productValue;
+    }
+
+    private String getJsonAttribute(String attribute, int productValue) {
         return "\"" + attribute + "\": " + productValue;
     }
 }

@@ -59,15 +59,9 @@ public class OrdersWriter {
     }
 
     private String getColorFor(Product product) {
-        switch (product.getColor()) {
-            case 1:
-                return "blue";
-            case 2:
-                return "red";
-            case 3:
-                return "yellow";
-            default:
-                return "no color";
-        }
+        if(product.getColor() < 0 || product.getColor() > Color.values().length)
+            return "no color";
+
+        return Color.values()[product.getColor() - 1].toString();
     }
 }

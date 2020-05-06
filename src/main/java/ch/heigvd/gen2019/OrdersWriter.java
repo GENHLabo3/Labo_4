@@ -36,29 +36,24 @@ public class OrdersWriter {
             Product product = order.getProduct(j);
 
             sb.append("{");
-            sb.append("\"code\": \"");
-            sb.append(product.getCode());
-            sb.append("\", ");
-            sb.append("\"color\": \"");
-            sb.append(getColorFor(product));
-            sb.append("\", ");
+            sb.append(getJsonAttribute("code", product.getCode()));
+            sb.append(", ");
+            sb.append(getJsonAttribute("color", getColorFor(product)));
+            sb.append(", ");
 
             if (product.getSize() != Product.SIZE_NOT_APPLICABLE) {
-                sb.append("\"size\": \"");
                 if(product.getSize() < 0 || product.getSize() > Size.values().length) {
-                    sb.append("Invalid Size");
+                    sb.append(getJsonAttribute("size", "Invalid Size"));
                 } else {
-                    sb.append(Size.values()[product.getSize() - 1].toString());
+                    sb.append(getJsonAttribute("size", Size.values()[product.getSize() - 1].toString()));
                 }
-                sb.append("\", ");
+                sb.append(", ");
             }
 
-            sb.append("\"price\": ");
-            sb.append(product.getPrice());
+            sb.append(getJsonAttribute("price", product.getPrice()));
             sb.append(", ");
-            sb.append("\"currency\": \"");
-            sb.append(product.getCurrency());
-            sb.append("\"}" + (j >= order.getProductsCount() - 1 ? "" : ", "));
+            sb.append(getJsonAttribute("currency", product.getCurrency()));
+            sb.append("}" + (j >= order.getProductsCount() - 1 ? "" : ", "));
         }
     }
 
@@ -67,5 +62,13 @@ public class OrdersWriter {
             return "no color";
 
         return Color.values()[product.getColor() - 1].toString();
+    }
+
+    private String getJsonAttribute(String attribute, String productValue) {
+        return "\"" + attribute + "\": \"" + productValue + "\"";
+    }
+
+    private String getJsonAttribute(String attribute, double productValue) {
+        return "\"" + attribute + "\": " + productValue;
     }
 }

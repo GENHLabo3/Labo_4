@@ -24,21 +24,11 @@ public class OrdersWriter {
 
             getProductsJsonInformation(sb, order);
 
-            removeLastTwoCharacters(sb, order.getProductsCount());
-
             sb.append("]");
-            sb.append("}, ");
+            sb.append("}" + (i >= orders.getOrdersCount() - 1 ? "" : ", "));
         }
-
-        removeLastTwoCharacters(sb, orders.getOrdersCount());
 
         return sb.append("]}");
-    }
-
-    private void removeLastTwoCharacters(StringBuffer sb, int productsCount) {
-        if (productsCount > 0) {
-            sb.delete(sb.length() - 2, sb.length());
-        }
     }
 
     private void getProductsJsonInformation(StringBuffer sb, Order order) {
@@ -64,7 +54,7 @@ public class OrdersWriter {
             sb.append(", ");
             sb.append("\"currency\": \"");
             sb.append(product.getCurrency());
-            sb.append("\"}, ");
+            sb.append("\"}" + (j >= order.getProductsCount() - 1 ? "" : ", "));
         }
     }
 

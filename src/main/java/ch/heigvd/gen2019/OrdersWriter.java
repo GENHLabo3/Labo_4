@@ -42,11 +42,7 @@ public class OrdersWriter {
             sb.append(", ");
 
             if (product.getSize() != Product.SIZE_NOT_APPLICABLE) {
-                if(product.getSize() < 0 || product.getSize() > Size.values().length) {
-                    sb.append(getJsonAttribute("size", "Invalid Size"));
-                } else {
-                    sb.append(getJsonAttribute("size", Size.values()[product.getSize() - 1].toString()));
-                }
+                sb.append(getJsonAttribute("size", getSizeFor(product)));
                 sb.append(", ");
             }
 
@@ -55,6 +51,13 @@ public class OrdersWriter {
             sb.append(getJsonAttribute("currency", product.getCurrency()));
             sb.append("}" + (j >= order.getProductsCount() - 1 ? "" : ", "));
         }
+    }
+
+    private String getSizeFor(Product product) {
+        if(product.getSize() < 0 || product.getSize() > Size.values().length)
+            return "Invalid Size";
+
+        return Size.values()[product.getSize() - 1].toString();
     }
 
     private String getColorFor(Product product) {

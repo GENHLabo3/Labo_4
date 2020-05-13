@@ -14,7 +14,6 @@ public class Product {
         this.size = size;
         this.price = price;
         this.currency = currency;
-
     }
 
     public String getCode() {
@@ -37,4 +36,17 @@ public class Product {
         return currency;
     }
 
+    public String getSizeFor() {
+        if(getSize() == null)
+            return "Invalid Size";
+
+        return getSize().toString();
+    }
+
+    public String getColorFor() {
+        if(getColor() == null)
+            return "no color";
+
+        return getColor().toString();
+    }
 }

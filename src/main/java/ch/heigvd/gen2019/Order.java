@@ -29,7 +29,7 @@ public class Order {
 
     private String getProductsJson() {
 
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
 
         for (int j = 0; j < getProductsCount(); j++) {
             Product product = getProduct(j);
@@ -42,7 +42,7 @@ public class Order {
     }
 
     public String getOrderJson() {
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
 
         sb.append(JsonTranslator.getJsonAttribute("id", getOrderId()));
         sb.append(", ");

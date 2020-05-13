@@ -9,10 +9,10 @@ public class Product {
     private String currency;
 
     public Product(String code, Color color, Size size, double price, String currency) {
-        this.code = code;
-        this.color = color;
-        this.size = size;
-        this.price = price;
+        this.code     = code;
+        this.color    = color;
+        this.size     = size;
+        this.price    = price;
         this.currency = currency;
     }
 

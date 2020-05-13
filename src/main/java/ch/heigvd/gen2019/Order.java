@@ -21,9 +21,8 @@ public class Order {
 
         for (int j = 0; j < products.size(); j++) {
             Product product = products.get(j);
-            sb.append("{");
             sb.append(product.getProductJson());
-            sb.append("}" + (j >= products.size() - 1 ? "" : ", "));
+            sb.append(j >= products.size() - 1 ? "" : ", ");
         }
 
         return sb.toString();
@@ -32,11 +31,12 @@ public class Order {
     public String getOrderJson() {
         StringBuffer sb = new StringBuffer();
 
+        sb.append("{");
         sb.append(JsonTranslator.getJsonAttribute("id", id));
         sb.append(", ");
         sb.append("\"products\": [");
         sb.append(getProductsJson());
-        sb.append("]");
+        sb.append("]}");
 
         return sb.toString();
     }

@@ -16,9 +16,8 @@ public class Orders {
 
         for (int i = 0; i < orders.size(); i++) {
             Order order = orders.get(i);
-            sb.append("{");
             sb.append(order.getOrderJson());
-            sb.append("}" + (i >= orders.size() - 1 ? "" : ", "));
+            sb.append(i >= orders.size() - 1 ? "" : ", ");
         }
 
         sb.append("]}");

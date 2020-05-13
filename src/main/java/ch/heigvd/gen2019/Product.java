@@ -18,6 +18,7 @@ public class Product {
 
     public String getProductJson() {
         StringBuffer sb = new StringBuffer();
+        sb.append("{");
         sb.append(JsonTranslator.getJsonAttribute("code", code));
         sb.append(", ");
         sb.append(JsonTranslator.getJsonAttribute("color",
@@ -33,6 +34,7 @@ public class Product {
         sb.append(JsonTranslator.getJsonAttribute("price", price));
         sb.append(", ");
         sb.append(JsonTranslator.getJsonAttribute("currency", currency));
+        sb.append("}");
 
         return sb.toString();
     }

@@ -27,7 +27,7 @@ public class Order {
         products.add(product);
     }
 
-    public String getProductsJson() {
+    private String getProductsJson() {
 
         StringBuilder sb = new StringBuilder();
 

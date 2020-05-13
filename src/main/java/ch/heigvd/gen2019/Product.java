@@ -49,4 +49,23 @@ public class Product {
 
         return getColor().toString();
     }
+
+    public String getProductJson() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(JsonTranslator.getJsonAttribute("code", getCode()));
+        sb.append(", ");
+        sb.append(JsonTranslator.getJsonAttribute("color", getColorFor()));
+        sb.append(", ");
+
+        if (getSize() != Size.undefined) {
+            sb.append(JsonTranslator.getJsonAttribute("size", getSizeFor()));
+            sb.append(", ");
+        }
+
+        sb.append(JsonTranslator.getJsonAttribute("price", getPrice()));
+        sb.append(", ");
+        sb.append(JsonTranslator.getJsonAttribute("currency", getCurrency()));
+
+        return sb.toString();
+    }
 }

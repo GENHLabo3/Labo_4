@@ -29,25 +29,11 @@ public class OrdersWriter {
 
         return sb.append("]}");
     }
-
     private void getProductsJsonInformation(StringBuffer sb, Order order) {
         for (int j = 0; j < order.getProductsCount(); j++) {
             Product product = order.getProduct(j);
-
             sb.append("{");
-            sb.append(JsonTranslator.getJsonAttribute("code", product.getCode()));
-            sb.append(", ");
-            sb.append(JsonTranslator.getJsonAttribute("color", product.getColorFor()));
-            sb.append(", ");
-
-            if (product.getSize() != Size.undefined) {
-                sb.append(JsonTranslator.getJsonAttribute("size", product.getSizeFor()));
-                sb.append(", ");
-            }
-
-            sb.append(JsonTranslator.getJsonAttribute("price", product.getPrice()));
-            sb.append(", ");
-            sb.append(JsonTranslator.getJsonAttribute("currency", product.getCurrency()));
+            sb.append(product.getProductJson());
             sb.append("}" + (j >= order.getProductsCount() - 1 ? "" : ", "));
         }
     }

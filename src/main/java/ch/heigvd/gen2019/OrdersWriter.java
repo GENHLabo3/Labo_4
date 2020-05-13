@@ -8,20 +8,8 @@ public class OrdersWriter {
     }
 
     public String getContents() {
-        return getOrderJson().toString();
+        return orders.getOrdersJson();
     }
 
-    private StringBuffer getOrderJson() {
-        StringBuffer sb = new StringBuffer("{\"orders\": [");
-
-        for (int i = 0; i < orders.getOrdersCount(); i++) {
-            Order order = orders.getOrder(i);
-            sb.append("{");
-            sb.append(order.getOrderJson());
-            sb.append("}" + (i >= orders.getOrdersCount() - 1 ? "" : ", "));
-        }
-
-        return sb.append("]}");
-    }
 
 }

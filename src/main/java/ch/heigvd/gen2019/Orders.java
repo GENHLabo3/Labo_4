@@ -17,4 +17,20 @@ public class Orders {
     public Order getOrder(int i) {
         return orders.get(i);
     }
+
+    public String getOrdersJson() {
+
+        StringBuffer sb = new StringBuffer("{\"orders\": [");
+
+        for (int i = 0; i < getOrdersCount(); i++) {
+            Order order = getOrder(i);
+            sb.append("{");
+            sb.append(order.getOrderJson());
+            sb.append("}" + (i >= getOrdersCount() - 1 ? "" : ", "));
+        }
+
+        sb.append("]}");
+
+        return sb.toString();
+    }
 }

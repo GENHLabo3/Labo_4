@@ -11,18 +11,6 @@ public class Order {
         this.id = id;
     }
 
-    public int getOrderId() {
-        return id;
-    }
-
-    public int getProductsCount() {
-        return products.size();
-    }
-
-    public Product getProduct(int j) {
-        return products.get(j);
-    }
-
     public void AddProduct(Product product) {
         products.add(product);
     }
@@ -31,11 +19,11 @@ public class Order {
 
         StringBuffer sb = new StringBuffer();
 
-        for (int j = 0; j < getProductsCount(); j++) {
-            Product product = getProduct(j);
+        for (int j = 0; j < products.size(); j++) {
+            Product product = products.get(j);
             sb.append("{");
             sb.append(product.getProductJson());
-            sb.append("}" + (j >= getProductsCount() - 1 ? "" : ", "));
+            sb.append("}" + (j >= products.size() - 1 ? "" : ", "));
         }
 
         return sb.toString();
@@ -44,7 +32,7 @@ public class Order {
     public String getOrderJson() {
         StringBuffer sb = new StringBuffer();
 
-        sb.append(JsonTranslator.getJsonAttribute("id", getOrderId()));
+        sb.append(JsonTranslator.getJsonAttribute("id", id));
         sb.append(", ");
         sb.append("\"products\": [");
         sb.append(getProductsJson());

@@ -19,10 +19,11 @@ public class Order {
 
         StringBuffer sb = new StringBuffer();
 
-        for (int j = 0; j < products.size(); j++) {
-            Product product = products.get(j);
+        for (int i = 0; i < products.size(); i++) {
+            Product product = products.get(i);
             sb.append(product.getProductJson());
-            sb.append(j >= products.size() - 1 ? "" : ", ");
+            if(i < products.size() - 1)
+                sb.append(", ");
         }
 
         return sb.toString();

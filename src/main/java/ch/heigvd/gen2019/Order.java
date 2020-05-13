@@ -26,4 +26,19 @@ public class Order {
     public void AddProduct(Product product) {
         products.add(product);
     }
+
+    public String getProductsJson() {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int j = 0; j < getProductsCount(); j++) {
+            Product product = getProduct(j);
+            sb.append("{");
+            sb.append(product.getProductJson());
+            sb.append("}" + (j >= getProductsCount() - 1 ? "" : ", "));
+        }
+
+        return sb.toString();
+    }
+
 }

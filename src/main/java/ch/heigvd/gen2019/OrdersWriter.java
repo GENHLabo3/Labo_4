@@ -21,21 +21,13 @@ public class OrdersWriter {
             sb.append(", ");
 
             sb.append("\"products\": [");
-            getProductsJsonInformation(sb, order);
+            sb.append(order.getProductsJson());
             sb.append("]");
 
             sb.append("}" + (i >= orders.getOrdersCount() - 1 ? "" : ", "));
         }
 
         return sb.append("]}");
-    }
-    private void getProductsJsonInformation(StringBuffer sb, Order order) {
-        for (int j = 0; j < order.getProductsCount(); j++) {
-            Product product = order.getProduct(j);
-            sb.append("{");
-            sb.append(product.getProductJson());
-            sb.append("}" + (j >= order.getProductsCount() - 1 ? "" : ", "));
-        }
     }
 
 }

@@ -36,29 +36,17 @@ public class Product {
         return currency;
     }
 
-    public String getSizeFor() {
-        if(getSize() == null)
-            return "Invalid Size";
-
-        return getSize().toString();
-    }
-
-    public String getColorFor() {
-        if(getColor() == null)
-            return "no color";
-
-        return getColor().toString();
-    }
-
     public String getProductJson() {
         StringBuilder sb = new StringBuilder();
         sb.append(JsonTranslator.getJsonAttribute("code", getCode()));
         sb.append(", ");
-        sb.append(JsonTranslator.getJsonAttribute("color", getColorFor()));
+        sb.append(JsonTranslator.getJsonAttribute("color",
+                getColor() == null ? "no color" : getColor().toString()));
         sb.append(", ");
 
         if (getSize() != Size.undefined) {
-            sb.append(JsonTranslator.getJsonAttribute("size", getSizeFor()));
+            sb.append(JsonTranslator.getJsonAttribute("size",
+                    getSize() == null ? "Invalid Size" : getSize().toString()));
             sb.append(", ");
         }
 

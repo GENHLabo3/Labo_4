@@ -17,7 +17,7 @@ public class OrdersWriter {
         for (int i = 0; i < orders.getOrdersCount(); i++) {
             Order order = orders.getOrder(i);
             sb.append("{");
-            sb.append(getJsonAttribute("id", order.getOrderId()));
+            sb.append(JsonTranslator.getJsonAttribute("id", order.getOrderId()));
             sb.append(", ");
 
             sb.append("\"products\": [");
@@ -35,32 +35,21 @@ public class OrdersWriter {
             Product product = order.getProduct(j);
 
             sb.append("{");
-            sb.append(getJsonAttribute("code", product.getCode()));
+            sb.append(JsonTranslator.getJsonAttribute("code", product.getCode()));
             sb.append(", ");
-            sb.append(getJsonAttribute("color", product.getColorFor()));
+            sb.append(JsonTranslator.getJsonAttribute("color", product.getColorFor()));
             sb.append(", ");
 
             if (product.getSize() != Size.undefined) {
-                sb.append(getJsonAttribute("size", product.getSizeFor()));
+                sb.append(JsonTranslator.getJsonAttribute("size", product.getSizeFor()));
                 sb.append(", ");
             }
 
-            sb.append(getJsonAttribute("price", product.getPrice()));
+            sb.append(JsonTranslator.getJsonAttribute("price", product.getPrice()));
             sb.append(", ");
-            sb.append(getJsonAttribute("currency", product.getCurrency()));
+            sb.append(JsonTranslator.getJsonAttribute("currency", product.getCurrency()));
             sb.append("}" + (j >= order.getProductsCount() - 1 ? "" : ", "));
         }
     }
 
-    private String getJsonAttribute(String attribute, String productValue) {
-        return "\"" + attribute + "\": \"" + productValue + "\"";
-    }
-
-    private String getJsonAttribute(String attribute, double productValue) {
-        return "\"" + attribute + "\": " + productValue;
-    }
-
-    private String getJsonAttribute(String attribute, int productValue) {
-        return "\"" + attribute + "\": " + productValue;
-    }
 }

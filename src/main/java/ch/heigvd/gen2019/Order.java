@@ -20,8 +20,7 @@ public class Order {
         StringBuffer sb = new StringBuffer();
 
         for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-            sb.append(product.getProductJson());
+            sb.append(products.get(i).getProductJson());
             if(i < products.size() - 1)
                 sb.append(", ");
         }

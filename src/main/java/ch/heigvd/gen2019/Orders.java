@@ -15,8 +15,7 @@ public class Orders {
         StringBuffer sb = new StringBuffer("{\"orders\": [");
 
         for (int i = 0; i < orders.size(); i++) {
-            Order order = orders.get(i);
-            sb.append(order.getOrderJson());
+            sb.append(orders.get(i).getOrderJson());
 
             if(i < orders.size() - 1)
                 sb.append(", ");

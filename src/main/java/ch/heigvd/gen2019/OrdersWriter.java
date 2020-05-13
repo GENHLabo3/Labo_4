@@ -17,13 +17,7 @@ public class OrdersWriter {
         for (int i = 0; i < orders.getOrdersCount(); i++) {
             Order order = orders.getOrder(i);
             sb.append("{");
-            sb.append(JsonTranslator.getJsonAttribute("id", order.getOrderId()));
-            sb.append(", ");
-
-            sb.append("\"products\": [");
-            sb.append(order.getProductsJson());
-            sb.append("]");
-
+            sb.append(order.getOrderJson());
             sb.append("}" + (i >= orders.getOrdersCount() - 1 ? "" : ", "));
         }
 

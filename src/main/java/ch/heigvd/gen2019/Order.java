@@ -41,4 +41,16 @@ public class Order {
         return sb.toString();
     }
 
+    public String getOrderJson() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(JsonTranslator.getJsonAttribute("id", getOrderId()));
+        sb.append(", ");
+        sb.append("\"products\": [");
+        sb.append(getProductsJson());
+        sb.append("]");
+
+        return sb.toString();
+    }
+
 }

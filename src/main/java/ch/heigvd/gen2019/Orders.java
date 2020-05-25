@@ -10,11 +10,19 @@ public class Orders {
         orders.add(order);
     }
 
-    public int getOrdersCount() {
-        return orders.size();
-    }
+    public String getOrdersJson() {
 
-    public Order getOrder(int i) {
-        return orders.get(i);
+        StringBuffer sb = new StringBuffer("{\"orders\": [");
+
+        for (int i = 0; i < orders.size(); i++) {
+            sb.append(orders.get(i).getOrderJson());
+
+            if(i < orders.size() - 1)
+                sb.append(", ");
+        }
+
+        sb.append("]}");
+
+        return sb.toString();
     }
 }

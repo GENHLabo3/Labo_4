@@ -1,38 +1,41 @@
 package ch.heigvd.gen2019;
 
 public class Product {
-    public static final int SIZE_NOT_APPLICABLE = -1;
+
     private String code;
-    private int color;
-    private int size;
+    private Color color;
+    private Size size;
     private double price;
     private String currency;
 
-    public Product(String code, int color, int size, double price, String currency) {
-        this.code = code;
-        this.color = color;
-        this.size = size;
-        this.price = price;
+    public Product(String code, Color color, Size size, double price, String currency) {
+        this.code     = code;
+        this.color    = color;
+        this.size     = size;
+        this.price    = price;
         this.currency = currency;
     }
 
-    public String getCode() {
-        return code;
-    }
+    public String getProductJson() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("{");
+        sb.append(JsonTranslator.getJsonAttribute("code", code));
+        sb.append(", ");
+        sb.append(JsonTranslator.getJsonAttribute("color",
+                color == null ? "no color" : color.toString()));
+        sb.append(", ");
 
-    public int getColor() {
-        return color;
-    }
+        if (size != Size.undefined) {
+            sb.append(JsonTranslator.getJsonAttribute("size",
+                    size == null ? "Invalid Size" : size.toString()));
+            sb.append(", ");
+        }
 
-    public int getSize() {
-        return size;
-    }
+        sb.append(JsonTranslator.getJsonAttribute("price", price));
+        sb.append(", ");
+        sb.append(JsonTranslator.getJsonAttribute("currency", currency));
+        sb.append("}");
 
-    public double getPrice() {
-        return price;
-    }
-
-    public String getCurrency() {
-        return currency;
+        return sb.toString();
     }
 }
